@@ -21,10 +21,11 @@ orang setDataOrang(string nama, prefer prefers);
 void stableMatching(orang pria[5], orang wanita[5]);
 
 int main(){
-     orang pria[5], wanita[5];
-     prefer prefers;
+     orang pria[5];
+	orang wanita[5];
+	prefer prefers;
 
-     //Pria
+	//Pria
 	prefers[0] = 1; prefers[1] = 0; prefers[2] = 3; prefers[3] = 4; prefers[4] = 2;
 	pria[0] = setDataOrang("Victor",prefers);
 	prefers[0] = 3; prefers[1] = 1; prefers[2] = 0; prefers[3] = 2; prefers[4] = 4;
@@ -48,9 +49,9 @@ int main(){
 	prefers[0] = 3; prefers[1] = 1; prefers[2] = 4; prefers[3] = 2; prefers[4] = 0;
 	wanita[4] = setDataOrang("Erika",prefers);
 
-     stableMatching(pria,wanita);
+	stableMatching(pria,wanita);
 
-     cout << "\nHasil Stable Matching :" << endl;
+	cout << "\nHasil Stable Matching :" << endl;
      cout << "-----------------" << endl
           << "| Man \t Woman\t|" << endl
           << "-----------------" << endl;
@@ -71,13 +72,13 @@ orang setDataOrang(string nama, prefer prefers){
 }
 
 void stableMatching(orang pria[5], orang wanita[5]){
-     bool bebas = true;
-     int i=0, j=0, prefSek,prefSuk;
-     while(bebas){
-          if(wanita[pria[i].preferences[j]].pasangan = -1){
-               pria[i].pasangan = pria[i].preferences[j];
-               wanita[pria[i].preferences[j]].pasangan = i;
-          }else{
+     bool adaBebas = true;
+	int i = 0,j = 0, prefSek, prefSuk;
+	while(adaBebas == true){
+		if(wanita[pria[i].preferences[j]].pasangan == -1){
+			pria[i].pasangan = pria[i].preferences[j];
+			wanita[pria[i].preferences[j]].pasangan = i;
+		}else{
 			int k = 0;
 			prefSek = -1; prefSuk = -1;
 			while(prefSek == -1 || prefSuk == -1){
@@ -98,14 +99,14 @@ void stableMatching(orang pria[5], orang wanita[5]){
 				continue;
 			}
 		}
-		bebas = false;
+		adaBebas = false;
 		j=0;
 		for(int l = 0; l < 5; l++){
 			if(pria[l].pasangan == -1){
 				i = l;
-				bebas = true;
+				adaBebas = true;
 				break;
 			}
 		}
-     }
+	}
 }
